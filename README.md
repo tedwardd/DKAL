@@ -1,5 +1,5 @@
 # DKAL
-Docker and Kubernetes on ARM and Linux
+### Docker and Kubernetes on ARM and Linux
 
 This repo contains the slides for my presentation and the  files necessary to follow the steps outlined in the [wiki](https://github.com/k4k/DKAL/wiki).
 
