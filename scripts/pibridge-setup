@@ -1,0 +1,13 @@
+#!/bin/bash
+
+sudo ifdown PiBridge
+sudo ifdown YOUR_ETHERNET_ADAPTER
+sudo ifup YOUR_ETHERNET_ADAPTER
+sudo ifup PiBridge
+sudo systemctl restart dnsmasq.service
+
+sudo firewall-cmd --direct --add-rule ipv4 nat POSTROUTING 0 -o WIFI_ADAPTER -j MASQUERADE
+
+sudo firewall-cmd --direct --add-rule ipv4 filter FORWARD 0 -i WIFI_ADAPTER -o PiBridge -m state --state RELATED,ESTABLISHED -j ACCEPT
+
+sudo firewall-cmd --direct --add-rule ipv4 filter FORWARD 0 -i PiBridge -o WIFI_ADAPTER -j ACCEPT
